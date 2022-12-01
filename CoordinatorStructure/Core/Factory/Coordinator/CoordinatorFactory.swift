@@ -8,6 +8,6 @@
 import UIKit
 
 protocol CoordinatorFactory {
-    func makeAlphaCoordinator(navigationController: UINavigationController?) -> AlphaCoordinatorOutput
-    func makeBetaCoordinator(navigationController: UINavigationController?) -> BetaCoordinatorOutput
+	func makeAlphaCoordinator(router: Router?) -> (coordinator: AlphaCoordinatorOutput, toPresent: Presentable?)
+	func makeBetaCoordinator(router: Router?) -> (coordinator: BetaCoordinatorOutput, toPresent: Presentable?)
 }

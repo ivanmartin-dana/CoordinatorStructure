@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59E76F8429391CF70043D79B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E76F8329391CF70043D79B /* Router.swift */; };
+		59E76F8629391E470043D79B /* RouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E76F8529391E470043D79B /* RouterImpl.swift */; };
+		59E76F88293921140043D79B /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E76F87293921140043D79B /* Presentable.swift */; };
+		59E76F8A29392A790043D79B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E76F8929392A790043D79B /* Animation.swift */; };
 		99C52BFA29388D1300B71DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C52BF929388D1300B71DCF /* AppDelegate.swift */; };
 		99C52BFE29388D1300B71DCF /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C52BFD29388D1300B71DCF /* FirstVC.swift */; };
 		99C52C0329388D1700B71DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99C52C0229388D1700B71DCF /* Assets.xcassets */; };
@@ -37,6 +41,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		59E76F8329391CF70043D79B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		59E76F8529391E470043D79B /* RouterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterImpl.swift; sourceTree = "<group>"; };
+		59E76F87293921140043D79B /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		59E76F8929392A790043D79B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		99C52BF629388D1300B71DCF /* CoordinatorStructure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorStructure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C52BF929388D1300B71DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99C52BFD29388D1300B71DCF /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -79,6 +87,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59E76F8229391CF00043D79B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				59E76F8329391CF70043D79B /* Router.swift */,
+				59E76F8529391E470043D79B /* RouterImpl.swift */,
+				59E76F8929392A790043D79B /* Animation.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		99C52BED29388D1300B71DCF = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				99C52C1429388FF000B71DCF /* Base */,
+				59E76F8229391CF00043D79B /* Router */,
 				99C52C17293890F500B71DCF /* Factory */,
 			);
 			path = Core;
@@ -147,6 +166,7 @@
 		99C52C1429388FF000B71DCF /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				59E76F87293921140043D79B /* Presentable.swift */,
 				99C52C1229388FB700B71DCF /* BaseCoordinator.swift */,
 				99C52C1529388FF800B71DCF /* BaseView.swift */,
 			);
@@ -387,12 +407,16 @@
 				99C52BFE29388D1300B71DCF /* FirstVC.swift in Sources */,
 				99C52C2A2938932A00B71DCF /* UIViewController+Extensions.swift in Sources */,
 				99C52C422938999500B71DCF /* SegundoView.swift in Sources */,
+				59E76F8629391E470043D79B /* RouterImpl.swift in Sources */,
 				99C52C46293899DD00B71DCF /* BetaFactory.swift in Sources */,
+				59E76F88293921140043D79B /* Presentable.swift in Sources */,
+				59E76F8429391CF70043D79B /* Router.swift in Sources */,
 				99C52C3F2938996500B71DCF /* PrimeroView.swift in Sources */,
 				99C52C1329388FB700B71DCF /* BaseCoordinator.swift in Sources */,
 				99C52C32293893ED00B71DCF /* SecondVC.swift in Sources */,
 				99C52BFA29388D1300B71DCF /* AppDelegate.swift in Sources */,
 				99C52C1629388FF800B71DCF /* BaseView.swift in Sources */,
+				59E76F8A29392A790043D79B /* Animation.swift in Sources */,
 				99C52C23293891EF00B71DCF /* ModuleFactory.swift in Sources */,
 				99C52C2D2938938A00B71DCF /* FirstView.swift in Sources */,
 				99C52C382938965000B71DCF /* AlphaCoordinator.swift in Sources */,

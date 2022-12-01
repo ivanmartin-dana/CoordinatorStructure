@@ -20,6 +20,15 @@ extension UIViewController: BaseView {
             self.modalPresentationStyle = newValue
         }
     }
-    
-    
+}
+
+
+extension UIViewController: Presentable {
+	func toPresent() -> UIViewController? {
+		return self
+	}
+	
+	func availableViewController() -> UIViewController? {
+		return self
+	}
 }

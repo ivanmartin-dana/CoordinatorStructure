@@ -5,9 +5,6 @@
 //  Created by Ivan Martin on 01/12/2022.
 //
 
-import UIKit
+import Foundation
 
-protocol BaseView {
-    var viewController: UIViewController { get }
-    var presentationStyle: UIModalPresentationStyle { get set }
-}
+protocol BaseView: NSObjectProtocol, Presentable {}

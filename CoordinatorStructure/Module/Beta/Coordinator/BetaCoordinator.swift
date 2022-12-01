@@ -9,31 +9,37 @@ import Foundation
 import UIKit
 
 class BetaCoordinator: BetaCoordinatorOutput {
+	var router: Router
     var onFinish: (() -> Void)?
     var factory: BetaFactory?
-    var navigationController: UINavigationController?
     
+	init(router: Router){
+		self.router = router
+		self.factory = ModuleFactoryImpl()
+	}
+	
     func start() {
         showPrimeroScreen()
     }
     
     private func showPrimeroScreen(){
-        guard var vc = factory?.createPrimeroView() else { return }
-        vc.onButtonTapped = { [weak self] in
+        guard let view = factory?.createPrimeroView() else { return }
+		view.onButtonTapped = { [weak self] in
             self?.showSegundoScreen()
         }
-        vc.onDismiss = { [weak self] in
+		view.onDismiss = { [weak self] in
             self?.onFinish?()
         }
-        navigationController?.pushViewController(vc.viewController, animated: true)
+		router.setRoot(view)
     }
     
     private func showSegundoScreen(){
-        guard var vc = factory?.createSegundoView() else { return }
-        vc.onButtonTapped = { [weak self] in
+        guard let view = factory?.createSegundoView() else { return }
+		view.onButtonTapped = { [weak self] in
+			self?.router.dismiss()
             self?.onFinish?()
         }
-        navigationController?.pushViewController(vc.viewController, animated: true)
+		router.push(view)
     }
     
 }

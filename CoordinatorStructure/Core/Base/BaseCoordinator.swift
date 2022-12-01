@@ -8,6 +8,6 @@
 import UIKit
 
 protocol BaseCoordinator: AnyObject {
-    var navigationController: UINavigationController? { get set }
+	var router: Router { get set }
     func start()
 }

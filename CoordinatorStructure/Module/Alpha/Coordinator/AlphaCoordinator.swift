@@ -9,32 +9,37 @@ import Foundation
 import UIKit
 
 class AlphaCoordinator: AlphaCoordinatorOutput {
+	var router: Router
     var onFinish: (() -> Void)?
     var runBetaCoordinator: (()->Void)?
     var factory: AlphaFactory?
-    var navigationController: UINavigationController?
     
+	init(router: Router){
+		self.router = router
+		self.factory = ModuleFactoryImpl()
+	}
+	
     func start() {
         showFirstScreen()
     }
     
     private func showFirstScreen(){
-        guard var vc = factory?.createFirstView() else { return }
-        vc.onButtonTapped = { [weak self] in
+		guard let view = factory?.createFirstView() else { return }
+		view.onButtonTapped = { [weak self] in
             self?.showSecondScreen()
         }
-        vc.onDismiss = { [weak self] in
+		view.onDismiss = { [weak self] in
             self?.onFinish?()
         }
-        navigationController?.pushViewController(vc.viewController, animated: true)
+		router.setRoot(view, animation: .bottomUp)
     }
     
     private func showSecondScreen(){
-        guard var vc = factory?.createSecondView() else { return }
-        vc.onButtonTapped = { [weak self] in
+		guard let view = factory?.createSecondView() else { return }
+		view.onButtonTapped = { [weak self] in
             self?.runBetaCoordinator?()
         }
-        navigationController?.pushViewController(vc.viewController, animated: true)
+		router.push(view)
     }
     
 }

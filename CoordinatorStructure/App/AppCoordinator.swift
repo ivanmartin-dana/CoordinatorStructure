@@ -10,43 +10,44 @@ import UIKit
 
 class AppCoordinator: BaseCoordinator {
     let window: UIWindow
-    var navigationController: UINavigationController?
+	var router: Router
     var coordinatorFactory: CoordinatorFactory?
     
     var childCoordinators: [BaseCoordinator] = []
     
     init(window: UIWindow){
         self.window = window
+		self.router = RouterImpl()
+		self.window.rootViewController = router.toPresent()
+		self.window.makeKeyAndVisible()
     }
     
     func start() {
-        self.navigationController = UINavigationController()
         self.coordinatorFactory = CoordinatorFactoryImpl()
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
         
-        runAlphaCoordinator()
+        runAlphaCoordinator(router: router)
     }
     
-    private func runAlphaCoordinator(){
-        guard let child = coordinatorFactory?.makeAlphaCoordinator(navigationController: navigationController) else { return }
-        addDependency(child)
-        child.onFinish = { [weak self] in
-            self?.removeDependency(child)
+	private func runAlphaCoordinator(router: Router?){
+        guard let (coordinator, _) = coordinatorFactory?.makeAlphaCoordinator(router: router) else { return }
+		coordinator.onFinish = { [weak self] in
+            self?.removeDependency(coordinator)
         }
-        child.runBetaCoordinator = { [weak self] in
-            self?.runBetaCoordinator()
+		coordinator.runBetaCoordinator = { [weak self] in
+            self?.runBetaCoordinator(router: nil)
         }
-        child.start()
+		addDependency(coordinator)
+		coordinator.start()
     }
     
-    private func runBetaCoordinator(){
-        guard let child = coordinatorFactory?.makeBetaCoordinator(navigationController: navigationController) else { return }
-        addDependency(child)
-        child.onFinish = { [weak self] in
-            self?.removeDependency(child)
+	private func runBetaCoordinator(router: Router?){
+        guard let (coordinator, module) = coordinatorFactory?.makeBetaCoordinator(router: router) else { return }
+		coordinator.onFinish = { [weak self] in
+            self?.removeDependency(coordinator)
         }
-        child.start()
+		addDependency(coordinator)
+		self.router.present(module)
+		coordinator.start()
     }
     
     private func addDependency(_ coordinator: BaseCoordinator){

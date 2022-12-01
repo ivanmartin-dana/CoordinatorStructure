@@ -8,17 +8,13 @@
 import UIKit
 
 class CoordinatorFactoryImpl: CoordinatorFactory {
-    func makeAlphaCoordinator(navigationController: UINavigationController?) -> AlphaCoordinatorOutput {
-        let coordinator = AlphaCoordinator()
-        coordinator.navigationController = navigationController
-        coordinator.factory = ModuleFactoryImpl()
-        return coordinator
-    }
-    
-    func makeBetaCoordinator(navigationController: UINavigationController?) -> BetaCoordinatorOutput {
-        let coordinator = BetaCoordinator()
-        coordinator.navigationController = navigationController
-        coordinator.factory = ModuleFactoryImpl()
-        return coordinator
-    }
+	func makeAlphaCoordinator(router: Router?) -> (coordinator: AlphaCoordinatorOutput, toPresent: Presentable?) {
+		let router = router ?? RouterImpl()
+		return (AlphaCoordinator(router: router) , router)
+	}
+	
+	func makeBetaCoordinator(router: Router?) -> (coordinator: BetaCoordinatorOutput, toPresent: Presentable?) {
+		let router = router ?? RouterImpl()
+		return (BetaCoordinator(router: router) , router)
+	}
 }
